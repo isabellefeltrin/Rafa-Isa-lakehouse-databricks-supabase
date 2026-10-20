@@ -103,7 +103,7 @@ Rode os notebooks em ordem, cada um com **Run all**:
 3. Em **Job parameters**, crie `catalogo = workspace` e `modo_extracao = supabase`.
 4. Clique em **Run now** e aguarde as 5 tasks ficarem verdes.
 
-A definição completa do Job está em [`jobs/job_medalhao.yml`](jobs/job_medalhao.yml). Ela pode ser colada no editor YAML do Job (menu **⋮**), trocando `<SEU_EMAIL>`, ou usada com Databricks Asset Bundles.
+A definição completa do Job está em [`jobs/job_medalhao.yml`](jobs/job_medalhao.yml). Ela pode ser colada no editor YAML do Job (menu **⋮**) ou usada com Databricks Asset Bundles. Os caminhos dos notebooks apontam para `/Workspace/Users/isalufeltrin@gmail.com/...`: troque pelo e-mail da sua conta antes de usar.
 
 ### Plano B: saída de rede bloqueada
 

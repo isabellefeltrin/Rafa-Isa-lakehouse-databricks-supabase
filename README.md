@@ -153,7 +153,7 @@ uv run mkdocs serve       # visualizar localmente em http://127.0.0.1:8000
 uv run mkdocs gh-deploy   # publicar no GitHub Pages
 ```
 
-Na primeira publicação, ative em **Settings → Pages → Branch: `gh-pages`**.
+O site também é publicado automaticamente pelo GitHub Actions ([`.github/workflows/docs.yml`](.github/workflows/docs.yml)) a cada push na `master` que altere `docs/` ou `mkdocs.yml`. Na primeira publicação, ative em **Settings → Pages → Branch: `gh-pages`**.
 
 ## Problemas comuns
 
@@ -200,6 +200,7 @@ Rode o passo 2.2 do Howto. Como alternativa temporária, preencha o widget `pg_u
 ├── scripts/
 │   ├── gerar_dados.py           # gera o script SQL com dados de exemplo
 │   └── extrair_supabase_para_volume.py   # Plano B
+├── .github/workflows/docs.yml   # deploy do MkDocs no GitHub Pages
 ├── docs/                        # páginas do MkDocs
 ├── mkdocs.yml
 └── pyproject.toml

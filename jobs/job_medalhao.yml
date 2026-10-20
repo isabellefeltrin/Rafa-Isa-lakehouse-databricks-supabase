@@ -1,0 +1,61 @@
+# Job "pipeline_medalhao_seguradora" (Jobs & Pipelines do Databricks)
+#
+# Mesmo formato do "View as code > YAML" do Databricks e compatível com Databricks Asset Bundles.
+# Antes de usar, troque <SEU_EMAIL> pelo e-mail da sua conta Databricks (caminho do Git folder).
+#
+# As tasks rodam em sequência (depends_on) em compute serverless:
+#   setup -> extracao_landing -> bronze -> silver -> gold
+resources:
+  jobs:
+    pipeline_medalhao_seguradora:
+      name: pipeline_medalhao_seguradora
+      description: >-
+        Lakehouse da seguradora na arquitetura medalhão:
+        Supabase (PostgreSQL) -> LANDING (CSV) -> BRONZE -> SILVER (Data Quality) -> GOLD (Kimball).
+      max_concurrent_runs: 1
+      parameters:
+        - name: catalogo
+          default: workspace
+        - name: modo_extracao
+          default: supabase   # troque para upload_externo se usar o Plano B (ver README)
+      tasks:
+        - task_key: setup
+          notebook_task:
+            notebook_path: /Workspace/Users/<SEU_EMAIL>/Rafa-Isa-lakehouse-databricks-supabase/notebooks/00_setup
+            source: WORKSPACE
+
+        - task_key: extracao_landing
+          depends_on:
+            - task_key: setup
+          notebook_task:
+            notebook_path: /Workspace/Users/<SEU_EMAIL>/Rafa-Isa-lakehouse-databricks-supabase/notebooks/01_extracao_landing
+            source: WORKSPACE
+
+        - task_key: bronze
+          depends_on:
+            - task_key: extracao_landing
+          notebook_task:
+            notebook_path: /Workspace/Users/<SEU_EMAIL>/Rafa-Isa-lakehouse-databricks-supabase/notebooks/02_bronze
+            source: WORKSPACE
+
+        - task_key: silver
+          depends_on:
+            - task_key: bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/<SEU_EMAIL>/Rafa-Isa-lakehouse-databricks-supabase/notebooks/03_silver
+            source: WORKSPACE
+
+        - task_key: gold
+          depends_on:
+            - task_key: silver
+          notebook_task:
+            notebook_path: /Workspace/Users/<SEU_EMAIL>/Rafa-Isa-lakehouse-databricks-supabase/notebooks/04_gold
+            source: WORKSPACE
+
+      # Opcional: execução diária às 06:00 (horário de Brasília)
+      # schedule:
+      #   quartz_cron_expression: "0 0 6 * * ?"
+      #   timezone_id: America/Sao_Paulo
+      #   pause_status: UNPAUSED
+      queue:
+        enabled: true

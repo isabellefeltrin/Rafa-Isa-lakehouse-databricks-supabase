@@ -1,0 +1,33 @@
+site_name: Lakehouse com Databricks e Arquitetura Medalhão
+site_description: Supabase (PostgreSQL) → Landing → Bronze → Silver → Gold no Databricks Free Edition
+repo_url: https://github.com/isabellefeltrin/Rafa-Isa-lakehouse-databricks-supabase
+
+theme:
+  name: material
+  language: pt-BR
+  palette:
+    primary: green
+  features:
+    - content.code.copy
+    - navigation.sections
+
+nav:
+  - Contexto: index.md
+  - Origem (Supabase): origem.md
+  - Landing e Bronze: landing-bronze.md
+  - Silver (Data Quality): silver.md
+  - Gold (Kimball): gold.md
+  - Job (Jobs & Pipelines): job.md
+  - Execução e evidências: execucao.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - attr_list
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format

@@ -1,0 +1,12 @@
+[project]
+name = "rafa-isa-lakehouse-databricks-supabase"
+version = "0.1.0"
+description = "Lakehouse na arquitetura medalhão com Databricks Free Edition e Supabase (PostgreSQL)"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "mkdocs>=1.6,<2",
+    "mkdocs-material>=9.5",
+    "psycopg2-binary>=2.9.10",
+    "databricks-sdk>=0.40",
+]

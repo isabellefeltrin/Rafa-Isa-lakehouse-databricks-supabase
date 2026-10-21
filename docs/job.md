@@ -33,7 +33,7 @@ flowchart LR
 4. Adicionar os parâmetros do Job.
 5. **Run now**.
 
-A definição completa está em [`jobs/job_medalhao.yml`](https://github.com/isabellefeltrin/Rafa-Isa-lakehouse-databricks-supabase/blob/main/jobs/job_medalhao.yml), no formato YAML do Databricks (compatível com Asset Bundles).
+A definição completa está em [`jobs/job_medalhao.yml`](https://github.com/isabellefeltrin/Rafa-Isa-lakehouse-databricks-supabase/blob/master/jobs/job_medalhao.yml), no formato YAML do Databricks (compatível com Asset Bundles).
 
 ## Mecanismos de segurança do pipeline
 

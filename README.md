@@ -105,6 +105,16 @@ Rode os notebooks em ordem, cada um com **Run all**:
 
 A definição completa do Job está em [`jobs/job_medalhao.yml`](jobs/job_medalhao.yml). Ela pode ser colada no editor YAML do Job (menu **⋮**), trocando `<SEU_EMAIL>`, ou usada com Databricks Asset Bundles.
 
+### Limpeza do ambiente (fora da pipeline)
+
+O notebook `notebooks/utils/limpar_ambiente.py` apaga as camadas para testar a pipeline do zero. Ele **não** faz parte do Job.
+
+1. Escolha o `escopo` (`tudo`, `landing`, `bronze`, `silver` ou `gold`).
+2. Sem preencher `confirmar`, ele só mostra o que seria apagado. Para apagar de fato, digite `SIM`.
+3. Depois, rode o Job (ou o `00_setup`) para recriar a estrutura.
+
+O banco no Supabase não é alterado.
+
 ### Plano B: saída de rede bloqueada
 
 Se o notebook 01 falhar com erro de conexão, a extração roda no seu computador e envia os CSVs para o volume pela API do Databricks:
@@ -194,7 +204,8 @@ Rode o passo 2.2 do Howto. Como alternativa temporária, preencha o widget `pg_u
 │   ├── 01_extracao_landing.py   # Supabase -> CSV (landing)
 │   ├── 02_bronze.py             # CSV -> Delta (bronze)
 │   ├── 03_silver.py             # Data Quality (silver)
-│   └── 04_gold.py               # Kimball (gold)
+│   ├── 04_gold.py               # Kimball (gold)
+│   └── utils/limpar_ambiente.py # limpeza do ambiente (fora do Job)
 ├── jobs/job_medalhao.yml        # definição do Job
 ├── sql/01_seguradora_postgres.sql
 ├── scripts/
